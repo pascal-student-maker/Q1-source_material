@@ -1,25 +1,24 @@
-# Ex01
-def calculate_love_score(first_name:str,second_name:str) -> float:
-    set1 = set(first_name)
-    set2 = set(second_name)
-    common_chars = set1.intersection(set2)
-    print(f"Shared unique letters: {','.join(common_chars)}")
-    average_length_of_names = len(first_name) + len(second_name) / 2
-    love_score = (len(common_chars)/ average_length_of_names) * 100
-    return love_score
+from collections import Counter
+def calculate_love_score(girlname:str,boyname:str) -> float:
+    average_length =  (len(girlname) + len(boyname)) /2
+    s1 = girlname
+    s2 = boyname
+     
+    c1 = Counter(s1.lower())
+    c2 = Counter(s2.lower())
+    Number_of_shared_unique_letters = sum((c1 & c2).values())
+    print(f" Number of shared unique letters: {Number_of_shared_unique_letters}")
+    print(f" Average length of names : {average_length}")
+    LoveScore = (Number_of_shared_unique_letters / average_length) * 100
+    return LoveScore
 
+
+girlname = input("Enter a girlname:").strip().lower()   
+boyname = input("enter a boyname:").strip().lower()
+result = calculate_love_score(girlname,boyname)
+
+print(f" The lovescore between {girlname} and {boyname} is {result:.2f} %")
+             
+             
+         
     
-
-
-
-# test your function 
-first_name = input("Enter a first name:> ")
-second_name = input("Enter a second name:> ")
-
-
-result = calculate_love_score(first_name,second_name)
-
-print(f" the number of shared unique characters is: {len(set(first_name.lower()).intersection(set(second_name.lower())))}")
-print(f"The love score between {first_name} and {second_name} is {calculate_love_score(first_name, second_name)} {result:.1f}%")
-
-

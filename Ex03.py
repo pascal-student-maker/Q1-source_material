@@ -1,16 +1,23 @@
 import random
+def select_random_gift(dict_wishlist_persons:dict[str,list[str]]):
+    random_gift = {}
+    for name,wishlist in dict_wishlist_persons.items():
+            random_gift[name] = random.choice(wishlist)
+    return random_gift  
 
-def select_random_gift(dict_wishlist_persons: dict[str, list[str]]) -> dict[str, str]:
-    """
-    Randomly selects a gift for each person from their wishlist.
-    """
-    gifts = {}
+
+dic_wishlist_persons = { "Stijn":["Bike", "headphones", "fitbit"], "Marie": ["Game", "bike", "screen",
+"swimming band"], "Joerie": ["racing bike", "swimming band", "book"], "Henk":["Laptop", "Beer Omer",
+"bike"]   }   
+
+result  = select_random_gift(dic_wishlist_persons) 
+
+
+print("Each person is randomly given a gift from their wish list. ")
+print(" This is the result")
+
+for name,wishlist in result.items():
+    print(f" {name} -> {wishlist}")
     
-    # Loop through each person and their wishlist
-    for name, wishlist in dict_wishlist_persons.items():
-        # Select a random gift from their wishlist
-        random_gift = random.choice(wishlist)
-        # Assign the gift to the person
-        gifts[name] = random_gift
     
-    return gifts
+       
